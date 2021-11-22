@@ -1,0 +1,43 @@
+body{
+    text-align: center;
+    background-color: aliceblue;
+}
+
+#game{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 400px;
+    margin: auto;
+}
+
+.case{
+    border: 2px solid orange;
+    height: 100px;
+    line-height: 100px;
+    font-size: 60px;
+    opacity: 40%;
+    color: orange;
+    background-color: black;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2{
+    font-style: italic;
+    font-family: Corbel;
+    font-size: 30px;
+    margin-top: 6%;
+}
+
+h1{
+    color: orange;
+}
+#tryAgain{
+    border-radius: 10%;
+    height: 30px;
+    background-color: #cecece;
+    color: orange;
+    font-family: Corbel;
+    font-weight: bold;
+    width: 8%;
+    font-size: 15px;
+}
