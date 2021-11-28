@@ -1,86 +1,37 @@
-//variables
-const statut =document.querySelector('h2');
-let gameActiv = true;
-let playerActiv = "X";
-let statutGame = ["", "", "", "", "", "", "", "", "",]
+const left_button = 0;
+const cases = document.getElementsByClassName('case');
+const right_button = 2;
+
+const turn = document.getElementById('won');
 
 
-//conditions pour gagner
-const winConditions = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3 ,6],
-    [1, 4 ,7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-]
+document.addEventListener('contextmenu', function (event){
+    event.preventDefault();
+});
 
-//tour joueur
-
-const win = () => `Le joueur ${playerActiv} à gagné`;
-const equal = () => "Egalité";
-const turnPlayer = () => `C'est au tour du joueur ${playerActiv}`;
-statut.innerHTML = turnPlayer();
-
-document.querySelectorAll(".case").forEach(cell => cell.addEventListener('click', gestionCliclCase));
-document.querySelector("#tryAgain").addEventListener('click', recommencer);
-
-
-//le clic des cases
-function gestionCliclCase(){
-    //index des cases
-    const indexCase = parseInt(this.dataset.index)
-
-
-    if(statutGame[indexCase] !== "" || !gameActiv){
-        return
-    }
-    statutGame[indexCase]= playerActiv;
-    this.innerHTML= playerActiv;
-
-    verifGagne()
-}
-
-
-//vérification pour conditions victoire
-function  verifGagne(){
-    let turnWin = false;
-
-    for(let conditionVictoire of winConditions){
-        let val1 = statutGame[conditionVictoire[0]];
-        let val2 = statutGame[conditionVictoire[1]];
-        let val3 = statutGame[conditionVictoire[2]];
-        if(val1 === "" || val2 === "" || val3 === ""){
-            continue;
+for(let i = 0; i < cases.length; i++) {
+    cases[i].addEventListener('mouseup', function(event){
+        if(event.button === left_button){
+            if(this.innerHTML === ""){
+                inserText(this, 'X');
+                turn.innerText = "C'est au tour du joueur O";
+            }
         }
-        if(val1 === val2 && val2 === val3){
-            turnWin = true;
-            break;
+        else if(event.button === right_button){
+            if (this.innerHTML === ""){
+                inserText(this, 'O');
+                turn.innerText = "C'est au tour du joueur X";
+            }
         }
-    }
-    if(turnWin){
-        statut.innerHTML = win();
-        gameActiv = false;
-        return;
-    }
 
-    if(!statutGame.includes("")){
-        statut.innerHTML = equal();
-        gameActiv = false;
-        return;
-    }
-    playerActiv = playerActiv === "X" ? "O" : "X";
-    statut.innerHTML = turnPlayer()
+    })
+
+}
+
+function inserText(element, lettrejoueur, ClassCss) {
+    element.innerHTML = lettrejoueur;
+    element.classList.add(ClassCss);
+    element.backgroundColor = "#7c7b7b";
 }
 
 
-//Rafraichir le jeu
-function recommencer(){
-    playerActiv = "x";
-    gameActiv = true;
-    statutGame = ["", "", "", "", "", "", "", "", "",];
-    statut.innerHTML = turnPlayer();
-    document.querySelectorAll('.case').forEach(cell => cell.innerHTML = "");
-}

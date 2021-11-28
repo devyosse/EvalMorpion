@@ -21,23 +21,35 @@ body{
     font-family: 'Montserrat', sans-serif;
 }
 
-h1, h2{
+h1 {
     font-style: italic;
-    font-family: Corbel;
+    font-family: Corbel, sans-serif;
     font-size: 30px;
     margin-top: 6%;
+    color: orange;
+
 }
 
-h1{
+#won {
+    font-style: italic;
+    font-family: Corbel, sans-serif;
+    font-size: 30px;
+    margin-top: 6%;
     color: orange;
+    padding: 0;
 }
-#tryAgain{
+#restart{
     border-radius: 10%;
     height: 30px;
     background-color: #cecece;
     color: orange;
-    font-family: Corbel;
+    font-family: Corbel, sans-serif;
     font-weight: bold;
     width: 8%;
     font-size: 15px;
+}
+
+a {
+    text-decoration-line: none;
+    color: orange;
 }
